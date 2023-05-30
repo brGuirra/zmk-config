@@ -64,9 +64,10 @@
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
-MAKE_HRM(hml_repeat, &kp, &key_repeat, KEYS_R THUMBS)  // used for HRM-combo
-MAKE_HRM(hmr_lpar_lt, &kp, &lpar_lt, KEYS_L THUMBS)    // "    "   "   "
-MAKE_HRM(hmr_rpar_gt, &kp, &rpar_gt, KEYS_L THUMBS)    // "    "   "   "
+MAKE_HRM(hmr_lpar_lt, &kp, &lpar_lt, KEYS_R THUMBS)    // "    "   "   "
+MAKE_HRM(hmr_rpar_gt, &kp, &rpar_gt, KEYS_R THUMBS)    // "    "   "   "
+MAKE_HRM(hmr_lbrac_lbrak, &kp, &lbrac_lbrak, KEYS_L THUMBS)    // "    "   "   "
+MAKE_HRM(hmr_rbrac_rbrak, &kp, &rbrac_rbrak, KEYS_L THUMBS)    // "    "   "   "
 
 /* Nav cluster */
 
@@ -216,6 +217,54 @@ ZMK_BEHAVIOR(rpar_gt, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
+// tap: at | shft + tap: minus
+ZMK_BEHAVIOR(at_minus, mod_morph,
+    bindings = <&kp AT>, <&kp MINUS>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// tap: ampersand | shft + tap: pipe
+ZMK_BEHAVIOR(amps_pipe, mod_morph,
+    bindings = <&kp AMPS>, <&kp PIPE>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// tap: left brace | shft + tap: left bracket
+ZMK_BEHAVIOR(lbrac_lbrak, mod_morph,
+    bindings = <&kp LBRC>, <&kp LBKT>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// tap: right brace | shft + tap: right bracket
+ZMK_BEHAVIOR(rbrac_rbrak, mod_morph,
+    bindings = <&kp RBRC>, <&kp RBKT>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// tap: dollar | shft + tap: caret
+ZMK_BEHAVIOR(dollar_caret, mod_morph,
+    bindings = <&kp DLLR>, <&kp CARET>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// tap: forward slash | shft + tap: underscore
+ZMK_BEHAVIOR(fslash_under, mod_morph,
+    bindings = <&kp FSLH>, <&kp UNDER>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// tap: star | shft + tap: hash
+ZMK_BEHAVIOR(star_hash, mod_morph,
+    bindings = <&kp STAR>, <&kp HASH>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// tap: percent | shft + tap: backslash
+ZMK_BEHAVIOR(prcnt_bslash, mod_morph,
+    bindings = <&kp PRCNT>, <&kp BSLH>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
 // tap: copy | double-tap: cut
 ZMK_BEHAVIOR(copy_cut, tap_dance,
     tapping-term-ms = <200>;
@@ -230,7 +279,7 @@ ZMK_BEHAVIOR(win_sleep, macro,
 )
 
 // misc aliases
-#define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
+#define CANCEL      &kp  K_CANCEL            // cancel caps-word, num-word and smart-mouse
 #define DSK_PREV    &hmr RSHFT LG(LC(LEFT))  // previous desktop
 #define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
 #define VOL_DOWN    &hmr LCTRL C_VOL_DN
@@ -241,11 +290,11 @@ ZMK_CONDITIONAL_LAYER(FN NUM, SYS)  // FN + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp Q         &kp W         &kp F         &kp P         &kp B           X_MT     &kp J         &kp L         &kp U         &kp Y         &kp SQT         X_RT
+    X_LT     &kp Q         &kp W         &kp E         &kp R         &kp T           X_MT     &kp Y         &kp U         &kp I         &kp O         &kp P           X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LGUI A   &hml LALT R   &hml LCTRL S  &hml LSHFT T  &kp G           X_MM     &kp M         &hmr RSHFT N  &hmr LCTRL E  &hmr LALT I   &hmr LGUI O     X_RM
+    X_LM     &hml LGUI A   &hml LALT S   &hml LCTRL D  &hml LSHFT F  &kp G           X_MM     &kp H         &hmr RSHFT J  &hmr LCTRL K  &hmr LALT L   &hmr LGUI SQT   X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp Z         &kp X         &kp C         &kp D         &kp V           X_MB     &kp K         &kp H         &comma_morph  &dot_morph    &qexcl          X_RB
+    X_LB     &kp Z         &kp X         &kp C         &kp V         &kp B           X_MB     &kp N         &kp M         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               &lt_spc NAV 0 &lt FN RET      X_MH     SMART_NUM     &smart_shft                                               X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
@@ -257,7 +306,7 @@ ZMK_LAYER(nav,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &sk LGUI      &sk LALT      &sk LCTRL     &sk LSHFT     ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           ___           ___           ___           ___             X_MB     &kp INS       &kp TAB       &kp LT        &kp GT        ___             X_RB
+    X_LB     ___           ___           ___           ___           ___             X_MB     &kp INS       &kp TAB       &kp ESC       ___           ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                               ___           ___             X_MH     ___           CANCEL                                                    X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
@@ -277,7 +326,7 @@ ZMK_LAYER(fn,
 
 ZMK_LAYER(num,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           &kp N7        &kp N8        &kp N9        ___             X_MT     ___           ___           ___           ___           ___             X_RT
+    X_LT     &kp BSLH      &kp N7        &kp N8        &kp N9        ___             X_MT     ___           ___           ___           ___           ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LGUI N0  &hml LALT N4  &hml LCTRL N5 &hml LSHFT N6 ___             X_MM     ___           ___           ___           ___           ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
